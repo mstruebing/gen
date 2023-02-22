@@ -44,7 +44,8 @@ RUN mkdir /source && \
     cd /source && \
     git clone -n https://github.com/${OPENAPI_GENERATOR_USER_ORG}/openapi-generator.git && \
     cd openapi-generator && \
-    git checkout $OPENAPI_GENERATOR_COMMIT
+    git checkout $OPENAPI_GENERATOR_COMMIT && \
+    git config --system --add safe.directory /source/openapi-generator
 
 # Build it and persist local repository
 RUN mkdir /.dotnet && chmod -R go+rwx /.dotnet && mkdir /.nuget && chmod -R go+rwx /.nuget && chmod -R go+rwx /root && umask 0 && cd /source/openapi-generator && \
